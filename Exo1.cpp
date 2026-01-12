@@ -12,7 +12,8 @@ int main(int argc, char** argv)
     for (;i<27; i++)
     {
         putc(a, fichier);
-        a++;
+        putc('\n', fichier); // mette un retour a la ligne
+        a++; // pour faire changer de lettre
     }
     
 
