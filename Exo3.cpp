@@ -3,7 +3,7 @@
 int lireDonnees(char* nomFichier, int* T)
 {
     FILE* fichier = NULL;
-    fopen_s(&fichier, nomFichier", "r");
+    fopen_s(&fichier, nomFichier, "r");
 
     while (c != EOF) // si fin
     {
