@@ -5,14 +5,17 @@ int lireDonnees(char* nomFichier, int* T)
     FILE* fichier = NULL;
     fopen_s(&fichier, nomFichier, "r");
     char c = 'a';
+    int b = 0;
 
     while (c != EOF) // si fin
     {
         c = (char)getc(fichier);
         printf_s("%c", c);
+        b++;
     }
 
     fclose(fichier);
+    return b;
 }
 
 void afficherTableau(int* T, int nb)
@@ -66,6 +69,7 @@ int main(int argc, char** argv)
     
     //o = lireDonnees("source1.txt", T);
     o = lireDonnees("source1.txt", T);
+    nb = o;
     afficherTableau(T, nb);
     triABulles(T, nb);
     enregistrerDonnees("source2.txt", T,nb);
