@@ -1,21 +1,32 @@
 #include <stdio.h>
 
-int lireDonnees(char* nomFichier, int* T)
-{
+int lireDonnees(const char* nomFichier, int* T)
+{ // https://openclassrooms.com/fr/courses/19980-apprenez-a-programmer-en-c/16421-manipulez-des-fichiers-a-l-aide-de-fonctions
     FILE* fichier = NULL;
     fopen_s(&fichier, nomFichier, "r");
-    char c = 'a';
-    int b = 0;
+    //char c = 'a';
+    int b = 0,n = 0;
 
-    while (c != EOF) // si fin
+    if (nomFichier == NULL)
     {
-        c = (char)getc(fichier);
-        printf_s("%c", c);
+        printf("Impossible d'ouvrir le fichier test.txt");
+    }
+    else
+    { 
+    while (n != EOF) // Si fin
+    {
+        //c = (char)getc(fichier);
+        //n = fgetc(fichier);
+        n = fscanf_s(fichier, "%d", &T[b]);
+        printf_s("%d", T[b]);
+       //T[b] = n ;
         b++;
     }
 
     fclose(fichier);
+    b--;
     return b;
+    }
 }
 
 void afficherTableau(int* T, int nb)
@@ -31,10 +42,10 @@ void triABulles(int* T, int nb)
     int passage = 0, i, j;
     bool permutation = true;
 
-    while (permutation) {         //http://lwh.free.fr/pages/algo/tri/tri_bulle.html
+    while (permutation) {    //http://lwh.free.fr/pages/algo/tri/tri_bulle.html
         permutation = false;
         passage++;
-        for (i = 0; i < 20 - passage; i++) {
+        for (i = 0; i < nb - passage; i++) {
             if (T[i] > T[i + 1]) {
                 //if(indice_min(nombre, i, i+1) != i) {
                 permutation = true;
@@ -48,7 +59,7 @@ void triABulles(int* T, int nb)
     j = 3;
 }
 
-void enregistrerDonnees(char* nomFichier, int* T, int nb)
+void enregistrerDonnees(const char* nomFichier, int* T, int nb)
 {
     FILE* fichier = NULL;
     fopen_s(&fichier, nomFichier, "r");
@@ -65,11 +76,9 @@ void enregistrerDonnees(char* nomFichier, int* T, int nb)
 int main(int argc, char** argv)
 {
 
-    int T[10],i=0, o, nb = 10;
+    int T[10],i=0, nb;
     
-    //o = lireDonnees("source1.txt", T);
-    o = lireDonnees("source1.txt", T);
-    nb = o;
+    nb = lireDonnees("source1.txt", T);
     afficherTableau(T, nb);
     triABulles(T, nb);
     enregistrerDonnees("source2.txt", T,nb);
