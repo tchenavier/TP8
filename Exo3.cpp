@@ -18,7 +18,7 @@ int lireDonnees(const char* nomFichier, int* T)
         //c = (char)getc(fichier);
         //n = fgetc(fichier);
         n = fscanf_s(fichier, "%d", &T[b]);
-        printf_s("%d", T[b]);
+       //printf_s("%d", T[b]);
        //T[b] = n ;
         b++;
     }
@@ -33,7 +33,7 @@ void afficherTableau(int* T, int nb)
 {
     for (int i = 0;i<nb;i++)
     {
-        printf_s("%d", T[i]);
+        printf_s("%d\n", T[i]);
     }
 }
 
@@ -57,17 +57,20 @@ void triABulles(int* T, int nb)
         }
     }
     j = 3;
+    
 }
 
 void enregistrerDonnees(const char* nomFichier, int* T, int nb)
 {
+    int erreur;
     FILE* fichier = NULL;
-    fopen_s(&fichier, nomFichier, "r");
+    fopen_s(&fichier, nomFichier, "w");
     for (int i = 0; i < nb; i++)
     {
         int d = T[i];
 
-        int putc(int d, FILE * fichier);
+       //erreur = putc(d, fichier);
+       fprintf(fichier, " %d",d);
 
     }
     fclose(fichier);
